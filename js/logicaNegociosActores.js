@@ -1,26 +1,26 @@
 
 function obtenerListaActores(){
   var aListaActores = [];
-
-    var req = $.ajax({
-      url: 'services/listar_actores.php',
-      dataType: 'json',
-      async:false,
-      data:{
-
-      }
-    });
-    req.done( function( respuesta ) {
-      aListaActores = respuesta;
-
-    });
-    req.fail(function() {
-      aListaActores = [];
-      console.log('error')
-    });
-
-    return aListaActores;
-
+  //request es quien establece la conexion con el php
+  var request = $.ajax({
+    url: 'services/listar_actores.php',
+    dataType: 'json',
+    async: false,
+    method: 'get',
+    data:{
+      //Aqui van las paramatros que enviarle al php
+    }
+  });
+  //Peticion que recibe los datos y los almacena en el arreglo si la conexion es exitosa
+  request.done(function(datos){
+    aListaActores = datos;
+  });
+  //Si la conexion falla, imprime en consola un mensaje
+  request.fail(function(){
+    console.log('Error de conexion');
+  });
+  //Devuelve la lista de actores
+  return aListaActores;
 }
 
 
@@ -31,7 +31,7 @@ function obtenerListaActoresAproximacion(psFiltro){
     type: 'get',
     contentType: 'application/x-www-form-urlencoded;charset=ISO-8859-15',
     dataType : 'json',
-    async:false, 
+    async:false,
     data:{
       'filtro': psFiltro
     },
@@ -60,13 +60,12 @@ function registrarActor(pinfoActor){
       'papellido2': pinfoActor[3],
       'pnacimiento': pinfoActor[4],
       'pgenero': pinfoActor[5]
-    },
-    success: function(respuesta){
-      console.log('Se registro satisfactoriamente');
-    },
-    error: function(respuesta,error){
-      console.log(respuesta + 'error: ' + error);
-
     }
+  });
+  request.done(function(datos){
+    console.log('Conexion exitosa');
+  });
+  request.fail(function(){
+    console.log('Error de conexion');
   });
 }
