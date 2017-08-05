@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="" id="opcionHome">Home</a>
+        <a href="" id="opcionRegistrar">Registrar</a>
+        <a href="" id="opcionVisualizar">Visualizar</a>
+        <a href="" id="opcionModificar">Modificar</a>
+        <a href="" id="opcionCerrar">Cerrar sesión</a>
+      </nav>
+    </header>
+    <h1>Registrar actor</h1>
+
+    <form>
+      <div>
+        <label for="txtNombre1">Primer nombre</label>
+        <input type="text" id="txtNombre1">
+      </div>
+      <div>
+        <label for="txtNombre2">Segundo nombre</label>
+        <input type="text" id="txtNombre2">
+      </div>
+      <div>
+        <label for="txtApellido1">Primer apellido</label>
+        <input type="text" id="txtApellido1">
+      </div>
+      <div>
+        <label for="txtApellido2">Segundo apellido</label>
+        <input type="text" id="txtApellido2">
+      </div>
+      <div>
+        <label for="txtNacimiento">Fecha nacimiento</label>
+        <input type="date" id="txtNacimiento">
+      </div>
+      <div>
+        <label for="Masculino">Masculino</label>
+        <input type="radio" value="Masculino" name="rbtGenero">
+
+        <label for="Femenino">Femenino</label>
+        <input type="radio" value="Femenino" name="rbtGenero">
+
+      </div>
+      <input type="button" id="btnRegistrar" value="Registrar">
+
+    </form>
+
+    <label for="txtAproximacion">Filtrar:</label>
+    <input type="text" id="txtAproximacion">
+
+    <table id="tblActores">
+      <thead>
+        <tr>
+          <th>Primer nombre</th>
+          <th>Segundo nombre</th>
+          <th>Primer apellido</th>
+          <th>Segundo apellido</th>
+          <th>Fecha nacimiento</th>
+          <th>Género</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="js/validarCredenciales.js"></script>
+  <script src="js/logicaNegociosActores.js"></script>
+  <script src="js/logicaInterfazActores.js"></script>
+  </body>
+</html>
