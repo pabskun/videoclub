@@ -34,14 +34,15 @@ function obtenerListaActoresAproximacion(psFiltro){
     async:false,
     data:{
       'filtro': psFiltro
-    },
-    success: function(respuesta){
-      listaActores = respuesta;
-    },
-    error: function(respuesta,error){
-      console.log(respuesta + 'error: ' + error);
-      listaActores = [];
     }
+  });
+  request.done(function(datos){
+    listaActores = datos;
+    console.log('Conexion exitosa');
+  });
+  request.fail(function(){
+    listaActores = [];
+    console.log('Error de conexion');
   });
   return listaActores;
 }
