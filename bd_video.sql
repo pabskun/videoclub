@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-08-2017 a las 19:30:13
+-- Tiempo de generación: 08-08-2017 a las 16:42:47
 -- Versión del servidor: 5.6.35
 -- Versión de PHP: 7.1.1
 
@@ -125,7 +125,6 @@ INSERT INTO `tactor` (`id_actor`, `nombre1`, `nombre2`, `apellido1`, `apellido2`
 (7, 'Jose', 'David', 'Solano', 'Montoya', '1998-03-17', 'Masculino', 0),
 (10, 'Hayleen', 'Vanessa', 'Bonilla', 'Bermúdez', '1996-12-31', 'Femenino', 1),
 (11, 'José', 'Antonio', 'Umaña', 'Acost', '1987-06-27', 'Masculino', 1),
-(12, 'Adriana', '', 'Monestel', 'Gamboa', '1993-01-12', 'Femenino', 1),
 (13, 'Kevin', '', 'Aguilar', 'Alvarado', '1996-10-23', 'Masculino', 0),
 (14, 'Adriana', '', 'Monestel', 'Gamboa', '1993-01-12', 'Femenino', 0);
 
@@ -159,6 +158,35 @@ INSERT INTO `tactores_x_pelicula` (`id_actor_pelicula`, `id_pelicula`, `id_actor
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tdetalle_prestamo`
+--
+
+CREATE TABLE `tdetalle_prestamo` (
+  `id_detalle_prestamo` int(11) NOT NULL,
+  `id_prestamo` int(11) NOT NULL,
+  `id_pelicula` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tdetalle_prestamo`
+--
+
+INSERT INTO `tdetalle_prestamo` (`id_detalle_prestamo`, `id_prestamo`, `id_pelicula`) VALUES
+(1, 1, 2),
+(2, 1, 3),
+(3, 1, 1),
+(4, 2, 1),
+(5, 3, 4),
+(6, 3, 4),
+(7, 4, 1),
+(8, 4, 4),
+(9, 5, 3),
+(10, 5, 4),
+(11, 6, 4);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tpelicula`
 --
 
@@ -181,6 +209,32 @@ INSERT INTO `tpelicula` (`id_pelicula`, `id_categoria`, `titulo`, `anno`, `canti
 (2, 1, 'Las Dos Torres', 2002, 6, 4, b'1'),
 (3, 2, 'R.E.C.', 2007, 3, 3, b'1'),
 (4, 2, 'El Orfanato', 2010, 2, 1, b'1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tprestamo`
+--
+
+CREATE TABLE `tprestamo` (
+  `id_prestamo` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `fecha_prestamo` date NOT NULL,
+  `cantidad_dias` int(11) NOT NULL,
+  `estado` char(1) NOT NULL COMMENT 'P: pendiente, C: cancelado'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tprestamo`
+--
+
+INSERT INTO `tprestamo` (`id_prestamo`, `id_usuario`, `fecha_prestamo`, `cantidad_dias`, `estado`) VALUES
+(1, 14, '2017-08-01', 4, 'P'),
+(2, 1, '2017-07-30', 5, 'P'),
+(3, 7, '2017-08-03', 2, 'P'),
+(4, 2, '2017-08-04', 2, 'P'),
+(5, 6, '2017-08-02', 2, 'P'),
+(6, 4, '2017-08-01', 2, 'C');
 
 -- --------------------------------------------------------
 
@@ -221,10 +275,22 @@ ALTER TABLE `tactores_x_pelicula`
   ADD PRIMARY KEY (`id_actor_pelicula`);
 
 --
+-- Indices de la tabla `tdetalle_prestamo`
+--
+ALTER TABLE `tdetalle_prestamo`
+  ADD PRIMARY KEY (`id_detalle_prestamo`);
+
+--
 -- Indices de la tabla `tpelicula`
 --
 ALTER TABLE `tpelicula`
   ADD PRIMARY KEY (`id_pelicula`);
+
+--
+-- Indices de la tabla `tprestamo`
+--
+ALTER TABLE `tprestamo`
+  ADD PRIMARY KEY (`id_prestamo`);
 
 --
 -- Indices de la tabla `tusuario`
@@ -247,10 +313,20 @@ ALTER TABLE `tactor`
 ALTER TABLE `tactores_x_pelicula`
   MODIFY `id_actor_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
+-- AUTO_INCREMENT de la tabla `tdetalle_prestamo`
+--
+ALTER TABLE `tdetalle_prestamo`
+  MODIFY `id_detalle_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
 -- AUTO_INCREMENT de la tabla `tpelicula`
 --
 ALTER TABLE `tpelicula`
   MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `tprestamo`
+--
+ALTER TABLE `tprestamo`
+  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `tusuario`
 --
